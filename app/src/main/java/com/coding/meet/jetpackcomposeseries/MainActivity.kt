@@ -1,28 +1,28 @@
 package com.coding.meet.jetpackcomposeseries
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CutCornerShape
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.*
 import androidx.compose.foundation.text.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.*
+import androidx.compose.ui.text.font.*
+import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.*
 import androidx.compose.ui.tooling.preview.Preview
 import com.coding.meet.jetpackcomposeseries.ui.theme.JetpackComposeSeriesTheme
@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    AllTypeOfButton()
+                    TextScreen()
                 }
             }
         }
@@ -68,23 +68,22 @@ fun TextFieldScreen() {
             label = { Text("Last Name") }
         )
 
-        Text(text ="$firstNameState $lastNameState")
+        Text(text = "$firstNameState $lastNameState")
     }
 }
 
 @Composable
-fun AllTypeOfButton(){
+fun AllTypeOfButton() {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(onClick = { }
-        , modifier = Modifier
-                .fillMaxWidth()
-                .size(100.dp)
-                .padding(8.dp)) {
+        Button(onClick = { }, modifier = Modifier
+            .fillMaxWidth()
+            .size(100.dp)
+            .padding(8.dp)) {
             Text(text = "Hello world", fontSize = 20.sp)
-        }      
+        }
         OutlinedButton(onClick = { /*TODO*/ }) {
             Text(text = "Hello World")
         }
@@ -94,22 +93,33 @@ fun AllTypeOfButton(){
         TextButton(onClick = { /*TODO*/ }) {
             Text(text = "Hello World")
         }
-        Button(onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(containerColor = Color.Red, contentColor = Color.White)) {
+        Button(
+            onClick = { /*TODO*/ },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Red,
+                contentColor = Color.White
+            )
+        ) {
             Text(text = "Hello World")
         }
-        Button(onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(containerColor = Color.Red, contentColor = Color.White)) {
-            Text(text = "Hello" , color = Color.Black)
+        Button(
+            onClick = { /*TODO*/ },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Red,
+                contentColor = Color.White
+            )
+        ) {
+            Text(text = "Hello", color = Color.Black)
             Text(text = " World", color = Color.Yellow)
         }
 
         Button(onClick = { /*TODO*/ }) {
-            Image(imageVector =
+            Image(
+                imageVector =
                 Icons.Default.ShoppingCart, contentDescription = "Cwnd",
-                colorFilter =  ColorFilter.tint(Color.White)
+                colorFilter = ColorFilter.tint(Color.White)
             )
-            Text(text = "Add To Cart" , modifier = Modifier.padding(start= 8.dp))
+            Text(text = "Add To Cart", modifier = Modifier.padding(start = 8.dp))
         }
 
         Button(onClick = { /*TODO*/ }, shape = RectangleShape) {
@@ -122,7 +132,8 @@ fun AllTypeOfButton(){
         Button(onClick = { /*TODO*/ }, shape = CutCornerShape(10.dp)) {
             Text(text = "Hello World")
         }
-        Button(onClick = { /*TODO*/ }, shape = CutCornerShape(10.dp),
+        Button(
+            onClick = { /*TODO*/ }, shape = CutCornerShape(10.dp),
             elevation = ButtonDefaults.buttonElevation(
                 defaultElevation = 10.dp,
                 pressedElevation = 15.dp,
@@ -135,10 +146,103 @@ fun AllTypeOfButton(){
         Button(
             onClick = { /*TODO*/ }, shape = CutCornerShape(10.dp),
             colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Red),
-          border = BorderStroke(2.dp,Color.Black)
+            border = BorderStroke(2.dp, Color.Black)
         ) {
             Text(text = "Hello World")
         }
     }
+}
 
+@OptIn(ExperimentalTextApi::class)
+@Composable
+fun TextScreen() {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(text = "Hello World")
+        Text(text = stringResource(id = R.string.hello_world))
+        Text(text = "Hello World", color = Color.Red)
+        Text(text = "Hello World", color = Color.Red, fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            fontStyle = FontStyle.Italic
+        )
+        Text(text = "Hello World", color = Color.Red,
+            textAlign = TextAlign.End, modifier = Modifier.fillMaxWidth())
+
+        Text(text = "Hello World", color = Color.Red,
+            fontFamily = FontFamily.Monospace)
+        Text(text = "Hello World", color = Color.Blue,
+            fontFamily = FontFamily(
+                Font(R.font.roboto_bold)
+            ), fontSize = 30.sp
+        )
+        Text(text = "Hello World", style = TextStyle(
+            brush = Brush.linearGradient(
+                colors = listOf(Color.Blue,Color.LightGray,Color.Yellow)
+            )
+        ),
+            fontFamily = FontFamily(
+                Font(R.font.roboto_bold)
+            ), fontSize = 30.sp
+        )
+        Text(text = "Hello World",
+            style = TextStyle(
+                fontSize = 24.sp,
+                shadow = Shadow(
+                    color = Color.Blue,
+                    offset = Offset(5.0f,30.0f),
+                    blurRadius = 3f
+                )
+            )
+        )
+
+        Text(
+            buildAnnotatedString {
+                withStyle(style = SpanStyle(
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Red
+                )){
+                    append("H")
+                }
+                append("ello ")
+                withStyle(style = SpanStyle(
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Red
+                )){
+                    append("W")
+                }
+                append("orld")
+
+            },
+            fontSize = 30.sp
+        )
+        Text(
+            buildAnnotatedString {
+                withStyle(style = SpanStyle(
+                    fontWeight = FontWeight.Bold,
+                   brush =  Brush.linearGradient(
+                       colors = listOf(Color.Blue,Color.LightGray,Color.Yellow)
+                   )
+                )){
+                    append("Hello ")
+                }
+                withStyle(style = SpanStyle(
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Red
+                )){
+                    append("W")
+                }
+                append("orld")
+
+            },
+            fontSize = 30.sp
+        )
+        Text(text = "Hello World Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World",
+            maxLines = 1 , overflow = TextOverflow.Ellipsis)
+
+        ClickableText(text = AnnotatedString("Click Me"), onClick = {
+            Log.d("message","Hello World")
+        })
+    }
 }
