@@ -14,7 +14,6 @@ import androidx.compose.foundation.shape.*
 import androidx.compose.foundation.text.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.geometry.Offset
@@ -24,7 +23,6 @@ import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.*
-import androidx.compose.ui.tooling.preview.Preview
 import com.coding.meet.jetpackcomposeseries.ui.theme.JetpackComposeSeriesTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,7 +35,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    TextScreen()
+                    BoxScreen()
                 }
             }
         }
@@ -78,10 +76,12 @@ fun AllTypeOfButton() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(onClick = { }, modifier = Modifier
-            .fillMaxWidth()
-            .size(100.dp)
-            .padding(8.dp)) {
+        Button(
+            onClick = { }, modifier = Modifier
+                .fillMaxWidth()
+                .size(100.dp)
+                .padding(8.dp)
+        ) {
             Text(text = "Hello world", fontSize = 20.sp)
         }
         OutlinedButton(onClick = { /*TODO*/ }) {
@@ -163,35 +163,43 @@ fun TextScreen() {
         Text(text = "Hello World")
         Text(text = stringResource(id = R.string.hello_world))
         Text(text = "Hello World", color = Color.Red)
-        Text(text = "Hello World", color = Color.Red, fontSize = 20.sp,
+        Text(
+            text = "Hello World", color = Color.Red, fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             fontStyle = FontStyle.Italic
         )
-        Text(text = "Hello World", color = Color.Red,
-            textAlign = TextAlign.End, modifier = Modifier.fillMaxWidth())
+        Text(
+            text = "Hello World", color = Color.Red,
+            textAlign = TextAlign.End, modifier = Modifier.fillMaxWidth()
+        )
 
-        Text(text = "Hello World", color = Color.Red,
-            fontFamily = FontFamily.Monospace)
-        Text(text = "Hello World", color = Color.Blue,
+        Text(
+            text = "Hello World", color = Color.Red,
+            fontFamily = FontFamily.Monospace
+        )
+        Text(
+            text = "Hello World", color = Color.Blue,
             fontFamily = FontFamily(
                 Font(R.font.roboto_bold)
             ), fontSize = 30.sp
         )
-        Text(text = "Hello World", style = TextStyle(
-            brush = Brush.linearGradient(
-                colors = listOf(Color.Blue,Color.LightGray,Color.Yellow)
-            )
-        ),
+        Text(
+            text = "Hello World", style = TextStyle(
+                brush = Brush.linearGradient(
+                    colors = listOf(Color.Blue, Color.LightGray, Color.Yellow)
+                )
+            ),
             fontFamily = FontFamily(
                 Font(R.font.roboto_bold)
             ), fontSize = 30.sp
         )
-        Text(text = "Hello World",
+        Text(
+            text = "Hello World",
             style = TextStyle(
                 fontSize = 24.sp,
                 shadow = Shadow(
                     color = Color.Blue,
-                    offset = Offset(5.0f,30.0f),
+                    offset = Offset(5.0f, 30.0f),
                     blurRadius = 3f
                 )
             )
@@ -199,17 +207,21 @@ fun TextScreen() {
 
         Text(
             buildAnnotatedString {
-                withStyle(style = SpanStyle(
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Red
-                )){
+                withStyle(
+                    style = SpanStyle(
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Red
+                    )
+                ) {
                     append("H")
                 }
                 append("ello ")
-                withStyle(style = SpanStyle(
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Red
-                )){
+                withStyle(
+                    style = SpanStyle(
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Red
+                    )
+                ) {
                     append("W")
                 }
                 append("orld")
@@ -219,18 +231,22 @@ fun TextScreen() {
         )
         Text(
             buildAnnotatedString {
-                withStyle(style = SpanStyle(
-                    fontWeight = FontWeight.Bold,
-                   brush =  Brush.linearGradient(
-                       colors = listOf(Color.Blue,Color.LightGray,Color.Yellow)
-                   )
-                )){
+                withStyle(
+                    style = SpanStyle(
+                        fontWeight = FontWeight.Bold,
+                        brush = Brush.linearGradient(
+                            colors = listOf(Color.Blue, Color.LightGray, Color.Yellow)
+                        )
+                    )
+                ) {
                     append("Hello ")
                 }
-                withStyle(style = SpanStyle(
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Red
-                )){
+                withStyle(
+                    style = SpanStyle(
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Red
+                    )
+                ) {
                     append("W")
                 }
                 append("orld")
@@ -238,11 +254,35 @@ fun TextScreen() {
             },
             fontSize = 30.sp
         )
-        Text(text = "Hello World Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World",
-            maxLines = 1 , overflow = TextOverflow.Ellipsis)
+        Text(
+            text = "Hello World Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World",
+            maxLines = 1, overflow = TextOverflow.Ellipsis
+        )
 
         ClickableText(text = AnnotatedString("Click Me"), onClick = {
-            Log.d("message","Hello World")
+            Log.d("message", "Hello World")
         })
+    }
+}
+
+
+@Composable
+fun BoxScreen() {
+    Box(
+        modifier = Modifier.background(Color.Yellow),
+        contentAlignment = Alignment.Center
+    ) {
+        Box(
+            modifier = Modifier
+                .background(Color.White)
+                .width(300.dp)
+                .height(200.dp)
+                .border(2.dp, Color.Black)
+        ) {
+            Text(text = "Hello World", modifier = Modifier.align(Alignment.TopStart))
+            Text(text = "Coding Meet", modifier = Modifier.align(Alignment.Center))
+            Text(text = "Hello World", modifier = Modifier.align(Alignment.BottomEnd))
+        }
+
     }
 }
