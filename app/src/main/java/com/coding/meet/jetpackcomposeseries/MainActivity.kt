@@ -315,7 +315,11 @@ fun ImageScreen() {
             modifier = Modifier.size(100.dp)
         )
         IconButton(onClick = { /*TODO*/ }, modifier = Modifier.size(100.dp)) {
-            Icon(imageVector = Icons.Filled.Home, contentDescription = "", modifier = Modifier.fillMaxSize())
+            Icon(
+                imageVector = Icons.Filled.Home,
+                contentDescription = "",
+                modifier = Modifier.fillMaxSize()
+            )
         }
     }
 }
@@ -325,19 +329,28 @@ fun RowScreen() {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
-        ) {
-        Text(text = "Hello World",
-            modifier = Modifier.background(Color.LightGray)
+    ) {
+        Text(
+            text = "Hello World",
+            modifier = Modifier
+                .background(Color.LightGray)
                 .border(2.dp, Color.Black),
-            fontSize = 20.sp)
-        Text(text = "Hello World",
-            modifier = Modifier.background(Color.Magenta)
+            fontSize = 20.sp
+        )
+        Text(
+            text = "Hello World",
+            modifier = Modifier
+                .background(Color.Magenta)
                 .border(2.dp, Color.Black),
-            fontSize = 20.sp)
-        Text(text = "Hello World",
-            modifier = Modifier.background(Color.Yellow)
+            fontSize = 20.sp
+        )
+        Text(
+            text = "Hello World",
+            modifier = Modifier
+                .background(Color.Yellow)
                 .border(2.dp, Color.Black),
-            fontSize = 20.sp)
+            fontSize = 20.sp
+        )
     }
 }
 
@@ -347,21 +360,33 @@ fun ColumnScreen() {
         verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Hello World",
-            modifier = Modifier.background(Color.LightGray)
+        Text(
+            text = "Hello World",
+            modifier = Modifier
+                .background(Color.LightGray)
                 .border(2.dp, Color.Black),
-            fontSize = 20.sp)
-        Text(text = "Hello World",
-            modifier = Modifier.background(Color.Magenta)
+            fontSize = 20.sp
+        )
+        Text(
+            text = "Hello World",
+            modifier = Modifier
+                .background(Color.Magenta)
                 .border(2.dp, Color.Black),
-            fontSize = 20.sp)
-        Text(text = "Hello World",
-            modifier = Modifier.background(Color.Yellow)
+            fontSize = 20.sp
+        )
+        Text(
+            text = "Hello World",
+            modifier = Modifier
+                .background(Color.Yellow)
                 .border(2.dp, Color.Black),
-            fontSize = 20.sp)
-        Text(text = "Hello World",
-            modifier = Modifier.background(Color.Green)
+            fontSize = 20.sp
+        )
+        Text(
+            text = "Hello World",
+            modifier = Modifier
+                .background(Color.Green)
                 .border(2.dp, Color.Black),
-            fontSize = 20.sp)
+            fontSize = 20.sp
+        )
     }
 }
