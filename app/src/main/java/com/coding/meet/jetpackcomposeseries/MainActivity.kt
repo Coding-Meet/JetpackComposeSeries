@@ -37,7 +37,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ImageScreen()
+                    RowScreen()
+                    ColumnScreen()
                 }
             }
         }
@@ -316,5 +317,51 @@ fun ImageScreen() {
         IconButton(onClick = { /*TODO*/ }, modifier = Modifier.size(100.dp)) {
             Icon(imageVector = Icons.Filled.Home, contentDescription = "", modifier = Modifier.fillMaxSize())
         }
+    }
+}
+
+@Composable
+fun RowScreen() {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
+        ) {
+        Text(text = "Hello World",
+            modifier = Modifier.background(Color.LightGray)
+                .border(2.dp, Color.Black),
+            fontSize = 20.sp)
+        Text(text = "Hello World",
+            modifier = Modifier.background(Color.Magenta)
+                .border(2.dp, Color.Black),
+            fontSize = 20.sp)
+        Text(text = "Hello World",
+            modifier = Modifier.background(Color.Yellow)
+                .border(2.dp, Color.Black),
+            fontSize = 20.sp)
+    }
+}
+
+@Composable
+fun ColumnScreen() {
+    Column(
+        verticalArrangement = Arrangement.SpaceAround,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(text = "Hello World",
+            modifier = Modifier.background(Color.LightGray)
+                .border(2.dp, Color.Black),
+            fontSize = 20.sp)
+        Text(text = "Hello World",
+            modifier = Modifier.background(Color.Magenta)
+                .border(2.dp, Color.Black),
+            fontSize = 20.sp)
+        Text(text = "Hello World",
+            modifier = Modifier.background(Color.Yellow)
+                .border(2.dp, Color.Black),
+            fontSize = 20.sp)
+        Text(text = "Hello World",
+            modifier = Modifier.background(Color.Green)
+                .border(2.dp, Color.Black),
+            fontSize = 20.sp)
     }
 }
