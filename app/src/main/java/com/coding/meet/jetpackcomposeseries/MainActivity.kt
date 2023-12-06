@@ -32,14 +32,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackComposeSeriesTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    RowScreen()
-                    ColumnScreen()
-                }
+                EqualWidthInRow()
+//                EqualWidthInColumn()
             }
         }
     }
@@ -386,6 +380,111 @@ fun ColumnScreen() {
             modifier = Modifier
                 .background(Color.Green)
                 .border(2.dp, Color.Black),
+            fontSize = 20.sp
+        )
+    }
+}
+
+// 0.1f  => 10%
+// 0.5f  => 50%
+// 1.0f => 100%
+
+@Composable
+fun ModifierScreen() {
+    Box(
+        modifier = Modifier
+            .size(200.dp, 200.dp)
+            .border(2.dp, Color.White, RoundedCornerShape(10))
+            .clip(RoundedCornerShape(10))
+            .background(Color.Blue)
+    )
+}
+
+
+@Composable
+fun EqualWidthInRow() {
+    Row(
+        modifier = Modifier
+            .fillMaxSize(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = "Hello World",
+            modifier = Modifier
+                .weight(1f)
+                .background(Color.LightGray)
+                .border(2.dp, Color.Black),
+            fontSize = 20.sp, textAlign = TextAlign.Center
+        )
+        Text(
+            text = "Hello World",
+            modifier = Modifier
+                .weight(1f)
+                .background(Color.Magenta)
+                .border(2.dp, Color.Black),
+            fontSize = 20.sp, textAlign = TextAlign.Center
+
+        )
+        Text(
+            text = "Hello World",
+            modifier = Modifier
+                .weight(1f)
+                .background(Color.Yellow)
+                .border(2.dp, Color.Black),
+            fontSize = 20.sp, textAlign = TextAlign.Center
+        )
+    }
+}
+
+@Composable
+fun EqualWidthInColumn() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Red),
+        verticalArrangement = Arrangement.SpaceAround,
+        horizontalAlignment = Alignment.Start
+    ) {
+        Text(
+            text = "Hello World",
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .background(Color.LightGray)
+                .border(2.dp, Color.Black)
+                .wrapContentSize(Alignment.Center),
+            fontSize = 20.sp,
+            textAlign = TextAlign.Center
+        )
+        Text(
+            text = "Hello World",
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .background(Color.Magenta)
+                .border(2.dp, Color.Black)
+                .wrapContentSize(Alignment.Center),
+            fontSize = 20.sp
+        )
+        Text(
+            text = "Hello World",
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .background(Color.Yellow)
+                .border(2.dp, Color.Black)
+                .wrapContentSize(Alignment.Center),
+            fontSize = 20.sp
+        )
+        Text(
+            text = "Hello World",
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .background(Color.Green)
+                .border(2.dp, Color.Black)
+                .wrapContentSize(Alignment.Center),
             fontSize = 20.sp
         )
     }
