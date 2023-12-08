@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.*
@@ -26,6 +27,7 @@ import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.*
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.coding.meet.jetpackcomposeseries.ui.theme.JetpackComposeSeriesTheme
 
 class MainActivity : ComponentActivity() {
@@ -33,7 +35,23 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackComposeSeriesTheme {
-                StateScreen()
+//                var count by rememberSaveable {
+//                    mutableStateOf(0)
+//                }
+
+                // without parameter
+//                val mainViewModel by viewModels<MainViewModel>()
+
+                // with parameter
+                val mainViewModel : MainViewModel = viewModel(
+                    factory = viewModelFactory {
+                        MainViewModel("Meet")
+                    }
+                )
+                Row{
+                    IncScreen(mainViewModel)
+                    DecScreen(mainViewModel)
+                }
             }
         }
     }
@@ -502,5 +520,23 @@ fun StateScreen() {
     }) {
         Log.d("TAG","re-Composition")
         Text(text = "$count Click")
+    }
+}
+
+@Composable
+fun IncScreen(mainViewModel: MainViewModel) {
+    Button(onClick = {
+        mainViewModel.inc()
+    }) {
+        Text(text = "${mainViewModel.count} Inc")
+    }
+}
+
+@Composable
+fun DecScreen(mainViewModel: MainViewModel) {
+    Button(onClick = {
+        mainViewModel.dec()
+    }) {
+        Text(text = "${mainViewModel.count} Dec")
     }
 }
