@@ -15,6 +15,7 @@ import androidx.compose.foundation.text.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.*
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
@@ -32,8 +33,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackComposeSeriesTheme {
-                EqualWidthInRow()
-//                EqualWidthInColumn()
+                StateScreen()
             }
         }
     }
@@ -487,5 +487,20 @@ fun EqualWidthInColumn() {
                 .wrapContentSize(Alignment.Center),
             fontSize = 20.sp
         )
+    }
+}
+
+@Composable
+fun StateScreen() {
+    var count by rememberSaveable {
+        mutableStateOf(0)
+    }
+    Log.d("TAG","initial Composition")
+    Button(onClick = {
+        count++
+        Log.d("TAG",count.toString())
+    }) {
+        Log.d("TAG","re-Composition")
+        Text(text = "$count Click")
     }
 }
