@@ -4,13 +4,15 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.*
 import androidx.compose.foundation.text.*
 import androidx.compose.material.icons.Icons
@@ -27,8 +29,9 @@ import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.*
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.coding.meet.jetpackcomposeseries.ui.theme.*
+import java.util.UUID
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +56,7 @@ class MainActivity : ComponentActivity() {
 //                    DecScreen(mainViewModel)
 //                }
 
-                CardScreen()
+                LazyScreen()
             }
         }
     }
@@ -551,18 +554,22 @@ fun CardScreen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Card(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .height(200.dp)
                 .padding(8.dp),
             shape = CutCornerShape(10.dp),
-            colors =CardDefaults.cardColors(
+            colors = CardDefaults.cardColors(
                 containerColor = greenColor
             )
         ) {
-            Text(text = "Hello, world!",
-                modifier = Modifier.fillMaxSize()
+            Text(
+                text = "Hello, world!",
+                modifier = Modifier
+                    .fillMaxSize()
                     .wrapContentSize(),
-                textAlign = TextAlign.Center)
+                textAlign = TextAlign.Center
+            )
         }
 
         ElevatedCardExample()
@@ -570,6 +577,7 @@ fun CardScreen() {
         OutlinedCardExample()
     }
 }
+
 @Composable
 fun ElevatedCardExample() {
     ElevatedCard(
@@ -577,20 +585,24 @@ fun ElevatedCardExample() {
             defaultElevation = 10.dp,
         ),
         shape = CutCornerShape(10.dp),
-        colors =CardDefaults.cardColors(
+        colors = CardDefaults.cardColors(
             containerColor = greenColor
         ),
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .height(200.dp)
             .padding(8.dp),
     ) {
         Text(
             text = "Hello, world!",
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
                 .wrapContentSize(),
-            textAlign = TextAlign.Center)
+            textAlign = TextAlign.Center
+        )
     }
 }
+
 @Composable
 fun OutlinedCardExample() {
     OutlinedCard(
@@ -598,7 +610,8 @@ fun OutlinedCardExample() {
             containerColor = greenColor
         ),
         border = BorderStroke(2.dp, Color.Black),
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .height(200.dp)
             .padding(8.dp),
         elevation = CardDefaults.cardElevation(
@@ -607,8 +620,234 @@ fun OutlinedCardExample() {
     ) {
         Text(
             text = "Hello, world!",
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
                 .wrapContentSize(),
-            textAlign = TextAlign.Center)
+            textAlign = TextAlign.Center
+        )
     }
 }
+
+@Composable
+fun LazyScreen() {
+    val studentList = mutableListOf(
+        Student(UUID.randomUUID().toString(), "Meet", 21, "male"),
+        Student(UUID.randomUUID().toString(), "Ankit", 20, "male"),
+        Student(UUID.randomUUID().toString(), "Bhumi", 21, "female"),
+        Student(UUID.randomUUID().toString(), "Raj", 23, "male"),
+        Student(UUID.randomUUID().toString(), "Abhishek", 26, "male"),
+    )
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+//            .verticalScroll(rememberScrollState())
+    ) {
+        LazyRowScreen()
+        LazyColumnScreen()
+    }
+}
+
+@Composable
+fun LazyColumnScreen() {
+    val studentList = mutableListOf(
+        Student(UUID.randomUUID().toString(), "Meet", 21, "male"),
+        Student(UUID.randomUUID().toString(), "Ankit", 20, "male"),
+        Student(UUID.randomUUID().toString(), "Bhumi", 21, "female"),
+        Student(UUID.randomUUID().toString(), "Raj", 23, "male"),
+        Student(UUID.randomUUID().toString(), "Abhishek", 26, "male"),
+    )
+    val studentList1 = mutableListOf(
+        Student(UUID.randomUUID().toString(), "Meet", 21, "male"),
+        Student(UUID.randomUUID().toString(), "Ankit", 20, "male"),
+        Student(UUID.randomUUID().toString(), "Bhumi", 21, "female"),
+        Student(UUID.randomUUID().toString(), "Raj", 23, "male"),
+        Student(UUID.randomUUID().toString(), "Abhishek", 26, "male"),
+    )
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(10.dp),
+        contentPadding = PaddingValues(10.dp)
+    ) {
+        item {
+            studentList.forEachIndexed { index, student ->
+                Text(text = "$student")
+            }
+        }
+        item {
+            OutlinedCard(
+                colors = CardDefaults.cardColors(
+                    containerColor = greenColor
+                ),
+                border = BorderStroke(2.dp, Color.Black),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .padding(8.dp),
+                elevation = CardDefaults.cardElevation(
+                    defaultElevation = 10.dp,
+                ),
+            ) {
+                Text(
+                    text = "First Item",
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .wrapContentSize(),
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+
+        items(5) { index ->
+            OutlinedCard(
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.Yellow
+                ),
+                border = BorderStroke(2.dp, Color.Black),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .padding(8.dp),
+                elevation = CardDefaults.cardElevation(
+                    defaultElevation = 10.dp,
+                ),
+            ) {
+                Text(
+                    text = "Item: $index",
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .wrapContentSize(),
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+        item {
+            OutlinedCard(
+                colors = CardDefaults.cardColors(
+                    containerColor = greenColor
+                ),
+                border = BorderStroke(2.dp, Color.Black),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .padding(8.dp),
+                elevation = CardDefaults.cardElevation(
+                    defaultElevation = 10.dp,
+                ),
+            ) {
+                Text(
+                    text = "End Item",
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .wrapContentSize(),
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+        items(studentList.size,
+            key = { index ->
+                studentList[index].id
+            }
+        ) { index ->
+            OutlinedCard(
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.White
+                ),
+                border = BorderStroke(2.dp, Color.Black),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .padding(8.dp),
+                elevation = CardDefaults.cardElevation(
+                    defaultElevation = 10.dp,
+                ),
+            ) {
+                Text(
+                    text = "${studentList[index].name}",
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .wrapContentSize(),
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+        itemsIndexed(studentList1,
+            key = { index, student ->
+                student.id
+            }
+        ) { index, student ->
+            OutlinedCard(
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.Red
+                ),
+                border = BorderStroke(2.dp, Color.Black),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .padding(8.dp),
+                elevation = CardDefaults.cardElevation(
+                    defaultElevation = 10.dp,
+                ),
+            ) {
+                Text(
+                    text = "${student.name}",
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .wrapContentSize(),
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun LazyRowScreen() {
+    val studentList = mutableListOf(
+        Student(UUID.randomUUID().toString(), "Meet", 21, "male"),
+        Student(UUID.randomUUID().toString(), "Ankit", 20, "male"),
+        Student(UUID.randomUUID().toString(), "Bhumi", 21, "female"),
+        Student(UUID.randomUUID().toString(), "Bhumi", 21, "female"),
+        Student(UUID.randomUUID().toString(), "Raj", 23, "male"),
+        Student(UUID.randomUUID().toString(), "Abhishek", 26, "male"),
+    )
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
+        contentPadding = PaddingValues(10.dp)
+    ){
+        itemsIndexed(studentList,
+            key = { index, student ->
+                student.id
+            }
+        ) { index, student ->
+            OutlinedCard(
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.Red
+                ),
+                border = BorderStroke(2.dp, Color.Black),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(80.dp)
+                    .padding(8.dp),
+                elevation = CardDefaults.cardElevation(
+                    defaultElevation = 10.dp,
+                ),
+            ) {
+                Text(
+                    text = "${student.name}",
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .wrapContentSize()
+                        .padding(10.dp),
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+    }
+}
+
+data class Student(
+    val id: String,
+    val name: String,
+    val age: Int,
+    val gender: String,
+)
