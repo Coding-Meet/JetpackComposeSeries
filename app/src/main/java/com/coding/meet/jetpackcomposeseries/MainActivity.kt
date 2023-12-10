@@ -28,7 +28,7 @@ import androidx.compose.ui.text.font.*
 import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.*
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.coding.meet.jetpackcomposeseries.ui.theme.JetpackComposeSeriesTheme
+import com.coding.meet.jetpackcomposeseries.ui.theme.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,15 +43,17 @@ class MainActivity : ComponentActivity() {
 //                val mainViewModel by viewModels<MainViewModel>()
 
                 // with parameter
-                val mainViewModel : MainViewModel = viewModel(
-                    factory = viewModelFactory {
-                        MainViewModel("Meet")
-                    }
-                )
-                Row{
-                    IncScreen(mainViewModel)
-                    DecScreen(mainViewModel)
-                }
+//                val mainViewModel : MainViewModel = viewModel(
+//                    factory = viewModelFactory {
+//                        MainViewModel("Meet")
+//                    }
+//                )
+//                Row{
+//                    IncScreen(mainViewModel)
+//                    DecScreen(mainViewModel)
+//                }
+
+                CardScreen()
             }
         }
     }
@@ -513,12 +515,12 @@ fun StateScreen() {
     var count by rememberSaveable {
         mutableStateOf(0)
     }
-    Log.d("TAG","initial Composition")
+    Log.d("TAG", "initial Composition")
     Button(onClick = {
         count++
-        Log.d("TAG",count.toString())
+        Log.d("TAG", count.toString())
     }) {
-        Log.d("TAG","re-Composition")
+        Log.d("TAG", "re-Composition")
         Text(text = "$count Click")
     }
 }
@@ -538,5 +540,75 @@ fun DecScreen(mainViewModel: MainViewModel) {
         mainViewModel.dec()
     }) {
         Text(text = "${mainViewModel.count} Dec")
+    }
+}
+
+@Composable
+fun CardScreen() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Card(
+            modifier = Modifier.fillMaxWidth()
+                .height(200.dp)
+                .padding(8.dp),
+            shape = CutCornerShape(10.dp),
+            colors =CardDefaults.cardColors(
+                containerColor = greenColor
+            )
+        ) {
+            Text(text = "Hello, world!",
+                modifier = Modifier.fillMaxSize()
+                    .wrapContentSize(),
+                textAlign = TextAlign.Center)
+        }
+
+        ElevatedCardExample()
+
+        OutlinedCardExample()
+    }
+}
+@Composable
+fun ElevatedCardExample() {
+    ElevatedCard(
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 10.dp,
+        ),
+        shape = CutCornerShape(10.dp),
+        colors =CardDefaults.cardColors(
+            containerColor = greenColor
+        ),
+        modifier = Modifier.fillMaxWidth()
+            .height(200.dp)
+            .padding(8.dp),
+    ) {
+        Text(
+            text = "Hello, world!",
+            modifier = Modifier.fillMaxSize()
+                .wrapContentSize(),
+            textAlign = TextAlign.Center)
+    }
+}
+@Composable
+fun OutlinedCardExample() {
+    OutlinedCard(
+        colors = CardDefaults.cardColors(
+            containerColor = greenColor
+        ),
+        border = BorderStroke(2.dp, Color.Black),
+        modifier = Modifier.fillMaxWidth()
+            .height(200.dp)
+            .padding(8.dp),
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 10.dp,
+        ),
+    ) {
+        Text(
+            text = "Hello, world!",
+            modifier = Modifier.fillMaxSize()
+                .wrapContentSize(),
+            textAlign = TextAlign.Center)
     }
 }
