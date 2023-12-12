@@ -11,3 +11,8 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 val greenColor = Color(0xFF03FA6E)
+
+val uncheckedThumbColor = Color(0xFF8c8c8c)
+val checkedThumbColor = Color(0xFFFFFFFF)
+val uncheckedTrackColor = Color(0xFFcdcdcd)
+val checkedTrackColor = Color(0xFF03FF72)

@@ -10,9 +10,9 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.*
+import androidx.compose.foundation.lazy.grid.*
+import androidx.compose.foundation.lazy.staggeredgrid.*
 import androidx.compose.foundation.shape.*
 import androidx.compose.foundation.text.*
 import androidx.compose.material.icons.Icons
@@ -20,7 +20,7 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.*
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.*
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.layout.ContentScale
@@ -56,7 +56,7 @@ class MainActivity : ComponentActivity() {
 //                    DecScreen(mainViewModel)
 //                }
 
-                LazyScreen()
+                SwitchScreen()
             }
         }
     }
@@ -813,7 +813,7 @@ fun LazyRowScreen() {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         contentPadding = PaddingValues(10.dp)
-    ){
+    ) {
         itemsIndexed(studentList,
             key = { index, student ->
                 student.id
@@ -851,3 +851,39 @@ data class Student(
     val age: Int,
     val gender: String,
 )
+
+@Composable
+fun SwitchScreen() {
+    var checked by remember {
+        mutableStateOf(false)
+    }
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        Switch(
+            modifier = Modifier.scale(1.5f),
+            checked = checked, onCheckedChange = {
+                checked = it
+            },
+            thumbContent = {
+                Icon(
+                    imageVector = if (checked) Icons.Filled.Check else Icons.Filled.Close,
+                    tint = if (checked) greenColor else Color.White,
+                    contentDescription = ""
+                )
+            },
+            colors = SwitchDefaults.colors(
+                checkedThumbColor = checkedThumbColor,
+                checkedTrackColor = checkedTrackColor,
+                uncheckedThumbColor = uncheckedThumbColor,
+                uncheckedTrackColor = uncheckedTrackColor,
+                uncheckedBorderColor = uncheckedThumbColor
+            )
+        )
+        Text(text = if (checked) "On" else "OFF")
+    }
+}
