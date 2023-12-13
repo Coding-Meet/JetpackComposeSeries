@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
 //                    DecScreen(mainViewModel)
 //                }
 
-                FabScreen()
+                RadioGroupScreen()
             }
         }
     }
