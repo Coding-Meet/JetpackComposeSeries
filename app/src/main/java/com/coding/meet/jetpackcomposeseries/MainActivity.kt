@@ -2,6 +2,7 @@ package com.coding.meet.jetpackcomposeseries
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
@@ -24,6 +25,7 @@ import androidx.compose.ui.draw.*
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.*
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.*
@@ -56,7 +58,7 @@ class MainActivity : ComponentActivity() {
 //                    DecScreen(mainViewModel)
 //                }
 
-                SwitchScreen()
+                FabScreen()
             }
         }
     }
@@ -885,5 +887,73 @@ fun SwitchScreen() {
             )
         )
         Text(text = if (checked) "On" else "OFF")
+    }
+}
+
+@Composable
+fun FabScreen() {
+    val context = LocalContext.current
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        FloatingActionButton(
+            onClick = {
+                Toast.makeText(context, "Click", Toast.LENGTH_LONG).show()
+            },
+            shape = CutCornerShape(20.dp),
+            containerColor = greenColor,
+            contentColor = Color.Black,
+            elevation = FloatingActionButtonDefaults.elevation(
+                defaultElevation = 10.dp
+            ),
+        ) {
+            Icon(Icons.Filled.Add, "Floating action button.")
+        }
+        Spacer(modifier = Modifier.padding(10.dp))
+        SmallFloatingActionButton(
+            onClick = {
+                Toast.makeText(context, "Click", Toast.LENGTH_LONG).show()
+
+            },
+            containerColor = greenColor,
+            contentColor = Color.Black,
+            elevation = FloatingActionButtonDefaults.elevation(
+                defaultElevation = 10.dp
+            ),
+        ) {
+            Icon(Icons.Filled.Add, "Small floating action button.")
+        }
+        Spacer(modifier = Modifier.padding(10.dp))
+        LargeFloatingActionButton(
+            onClick = {
+                Toast.makeText(context, "Click", Toast.LENGTH_LONG).show()
+
+            },
+            shape = CircleShape,
+            containerColor = greenColor,
+            contentColor = Color.Black,
+            elevation = FloatingActionButtonDefaults.elevation(
+                defaultElevation = 10.dp
+            ),
+        ) {
+            Icon(Icons.Filled.Add, "Large floating action button")
+        }
+        Spacer(modifier = Modifier.padding(10.dp))
+        ExtendedFloatingActionButton(
+            onClick = {
+                Toast.makeText(context, "Click", Toast.LENGTH_LONG).show()
+
+            },
+            expanded = true,
+            containerColor = greenColor,
+            contentColor = Color.Black,
+            elevation = FloatingActionButtonDefaults.elevation(
+                defaultElevation = 10.dp
+            ),
+            icon = { Icon(Icons.Filled.Edit, "Extended floating action button.") },
+            text = { Text(text = "Extended FAB") },
+        )
     }
 }
