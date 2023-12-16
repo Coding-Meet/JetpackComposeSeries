@@ -3,6 +3,10 @@ package com.coding.meet.jetpackcomposeseries
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.Modifier
 import com.coding.meet.jetpackcomposeseries.components.*
 import com.coding.meet.jetpackcomposeseries.ui.theme.JetpackComposeSeriesTheme
 
@@ -30,7 +34,7 @@ class MainActivity : ComponentActivity() {
 //                    DecScreen(mainViewModel)
 //                }
 
-                RadioGroupScreen()
+                TriStateCheckBoxScreen()
             }
         }
     }

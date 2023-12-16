@@ -34,13 +34,13 @@ import com.coding.meet.jetpackcomposeseries.ui.theme.greenColor
 @Composable
 fun RadioGroupScreen() {
     val optionList = listOf(
-        "Male", "Female", "Other"
+        "Male", "Female", "dawdwd","Other"
     )
 
     var selectedIndex by remember {
         mutableStateOf(0)
     }
-    val disableItemPos = -1
+    val disableItemPos = listOf<Int>()
     val context = LocalContext.current
 
     Column(
@@ -60,7 +60,7 @@ fun RadioGroupScreen() {
                             selectedIndex = index
                         },
                         role = Role.RadioButton,
-                        enabled = disableItemPos != index
+                        enabled = index !in disableItemPos
                     )
                     .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically
@@ -75,7 +75,7 @@ fun RadioGroupScreen() {
                         disabledSelectedColor = Color.LightGray,
                         disabledUnselectedColor = Color.LightGray
                     ),
-                    enabled = disableItemPos != index
+                    enabled = index !in disableItemPos
                 )
                 Icon(
                     modifier = Modifier.padding(end = 16.dp),
@@ -84,7 +84,7 @@ fun RadioGroupScreen() {
                         else R.drawable.unchecked_circle
                     ), contentDescription = null,
                     tint =
-                    if (disableItemPos != index) {
+                    if (index !in disableItemPos) {
                         if (selectedIndex == index) greenColor else Color.DarkGray
                     } else {
                         Color.LightGray
@@ -92,7 +92,7 @@ fun RadioGroupScreen() {
                 )
                 Text(
                     text = label,
-                    color = if (disableItemPos != index) Color.DarkGray else Color.LightGray
+                    color = if (index !in disableItemPos) Color.DarkGray else Color.LightGray
                 )
             }
         }
