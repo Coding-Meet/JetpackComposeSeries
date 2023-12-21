@@ -1,9 +1,12 @@
 package com.coding.meet.jetpackcomposeseries.components
 
 import android.util.Log
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.*
+import androidx.compose.ui.Modifier
 import com.coding.meet.jetpackcomposeseries.MainViewModel
 
 /**
@@ -42,4 +45,29 @@ fun DecScreen(mainViewModel: MainViewModel) {
     }) {
         Text(text = "${mainViewModel.count} Dec")
     }
+}
+
+
+@Composable
+fun MutableStateListExample() {
+    val items = remember {
+       mutableStateListOf<String>()
+    }
+
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        items.forEach{item ->
+            Text(text = item)
+
+        }
+
+        Button(onClick = {
+            items.add("New Item ${items.size + 1}")
+
+        }) {
+            Text(text = "Add Item")
+        }
+    }
+
 }

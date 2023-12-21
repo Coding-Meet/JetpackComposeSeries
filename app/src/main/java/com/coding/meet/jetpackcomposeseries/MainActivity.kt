@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
 //                    DecScreen(mainViewModel)
 //                }
 
-                SnapShotFlowExample()
+                MutableStateListExample()
             }
         }
     }
