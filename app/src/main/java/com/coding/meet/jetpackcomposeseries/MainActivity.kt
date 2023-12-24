@@ -4,24 +4,25 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Switch
-import androidx.compose.material3.SwitchDefaults
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.*
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import com.coding.meet.jetpackcomposeseries.components.SurfaceScreen
+import androidx.compose.ui.unit.dp
+import com.coding.meet.jetpackcomposeseries.components.BoxModifierScreen
 import com.coding.meet.jetpackcomposeseries.ui.theme.JetpackComposeSeriesTheme
-import com.coding.meet.jetpackcomposeseries.ui.theme.*
+import com.coding.meet.jetpackcomposeseries.ui.theme.customBackgroundWithBorder
 
 
 class MainActivity : ComponentActivity() {
@@ -50,33 +51,50 @@ class MainActivity : ComponentActivity() {
 //                    DecScreen(mainViewModel)
 //                }
 
-                Column(modifier = Modifier.fillMaxSize().background(
-                    if (darkTheme) { Color.Black } else { Color.Yellow}
-                )) {
+//                Column(modifier = Modifier.fillMaxSize().background(
+//                    if (darkTheme) { Color.Black } else { Color.Yellow}
+//                )) {
+//
+//                    SurfaceScreen()
+//                    Switch(
+//                        modifier = Modifier.scale(1.5f),
+//                        checked = darkTheme, onCheckedChange = {
+//                            darkTheme = it
+//                        },
+//                        thumbContent = {
+//                            Icon(
+//                                imageVector = if (darkTheme) Icons.Filled.Check else Icons.Filled.Close,
+//                                tint = if (darkTheme) greenColor else Color.White,
+//                                contentDescription = ""
+//                            )
+//                        },
+//                        colors = SwitchDefaults.colors(
+//                            checkedThumbColor = checkedThumbColor,
+//                            checkedTrackColor = checkedTrackColor,
+//                            uncheckedThumbColor = uncheckedThumbColor,
+//                            uncheckedTrackColor = uncheckedTrackColor,
+//                            uncheckedBorderColor = uncheckedThumbColor
+//                        )
+//                    )
+//                    Text(text = if (darkTheme) "On" else "OFF")
+//
+//                }
 
-                    SurfaceScreen()
-                    Switch(
-                        modifier = Modifier.scale(1.5f),
-                        checked = darkTheme, onCheckedChange = {
-                            darkTheme = it
-                        },
-                        thumbContent = {
-                            Icon(
-                                imageVector = if (darkTheme) Icons.Filled.Check else Icons.Filled.Close,
-                                tint = if (darkTheme) greenColor else Color.White,
-                                contentDescription = ""
-                            )
-                        },
-                        colors = SwitchDefaults.colors(
-                            checkedThumbColor = checkedThumbColor,
-                            checkedTrackColor = checkedTrackColor,
-                            uncheckedThumbColor = uncheckedThumbColor,
-                            uncheckedTrackColor = uncheckedTrackColor,
-                            uncheckedBorderColor = uncheckedThumbColor
-                        )
+
+                Column(modifier = Modifier.fillMaxSize()) {
+                    BoxModifierScreen(
+                        Modifier
+                            .fillMaxWidth()
+                            .weight(1f)
+                            .customBackgroundWithBorder(backGroundColor = Color.LightGray)
+
                     )
-                    Text(text = if (darkTheme) "On" else "OFF")
-
+                    BoxModifierScreen(
+                       Modifier
+                           .fillMaxWidth()
+                           .weight(1f)
+                           .customBackgroundWithBorder(isBorder = false, backGroundColor = Color.Yellow)
+                    )
                 }
             }
         }
