@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,11 +17,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.coding.meet.jetpackcomposeseries.components.BoxModifierScreen
+import com.coding.meet.jetpackcomposeseries.components.DeterminatePIScreen
+import com.coding.meet.jetpackcomposeseries.components.IndeterminatePIScreen
 import com.coding.meet.jetpackcomposeseries.ui.theme.JetpackComposeSeriesTheme
 import com.coding.meet.jetpackcomposeseries.ui.theme.customBackgroundWithBorder
 
@@ -81,20 +85,25 @@ class MainActivity : ComponentActivity() {
 //                }
 
 
-                Column(modifier = Modifier.fillMaxSize()) {
-                    BoxModifierScreen(
-                        Modifier
-                            .fillMaxWidth()
-                            .weight(1f)
-                            .customBackgroundWithBorder(backGroundColor = Color.LightGray)
+                Column(modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally) {
+//                    BoxModifierScreen(
+//                        Modifier
+//                            .fillMaxWidth()
+//                            .weight(1f)
+//                            .customBackgroundWithBorder(backGroundColor = Color.LightGray)
+//
+//                    )
+//                    BoxModifierScreen(
+//                       Modifier
+//                           .fillMaxWidth()
+//                           .weight(1f)
+//                           .customBackgroundWithBorder(isBorder = false, backGroundColor = Color.Yellow)
+//                    )
 
-                    )
-                    BoxModifierScreen(
-                       Modifier
-                           .fillMaxWidth()
-                           .weight(1f)
-                           .customBackgroundWithBorder(isBorder = false, backGroundColor = Color.Yellow)
-                    )
+                    IndeterminatePIScreen()
+                    DeterminatePIScreen()
                 }
             }
         }
