@@ -22,11 +22,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.coding.meet.jetpackcomposeseries.components.BoxModifierScreen
-import com.coding.meet.jetpackcomposeseries.components.DeterminatePIScreen
-import com.coding.meet.jetpackcomposeseries.components.IndeterminatePIScreen
+import com.coding.meet.jetpackcomposeseries.components.*
 import com.coding.meet.jetpackcomposeseries.ui.theme.JetpackComposeSeriesTheme
-import com.coding.meet.jetpackcomposeseries.ui.theme.customBackgroundWithBorder
 
 
 class MainActivity : ComponentActivity() {
@@ -102,8 +99,7 @@ class MainActivity : ComponentActivity() {
 //                           .customBackgroundWithBorder(isBorder = false, backGroundColor = Color.Yellow)
 //                    )
 
-                    IndeterminatePIScreen()
-                    DeterminatePIScreen()
+                    AnimationCounterScreen()
                 }
             }
         }
