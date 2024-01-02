@@ -72,9 +72,9 @@ class MainActivity : ComponentActivity() {
 //                }
 
 
-                Column(modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally) {
+//                Column(modifier = Modifier.fillMaxSize(),
+//                    verticalArrangement = Arrangement.Center,
+//                    horizontalAlignment = Alignment.CenterHorizontally) {
 //                    BoxModifierScreen(
 //                        Modifier
 //                            .fillMaxWidth()
@@ -89,9 +89,10 @@ class MainActivity : ComponentActivity() {
 //                           .customBackgroundWithBorder(isBorder = false, backGroundColor = Color.Yellow)
 //                    )
 
-                    StarAnimation()
-                    LoadingAnimation()
-                }
+//                    StarAnimation()
+//                    LoadingAnimation()
+//                }
+                LazyVerticalStaggeredGridScreen()
             }
         }
     }
