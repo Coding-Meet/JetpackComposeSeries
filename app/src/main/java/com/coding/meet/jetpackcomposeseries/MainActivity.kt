@@ -92,7 +92,7 @@ class MainActivity : ComponentActivity() {
 //                    StarAnimation()
 //                    LoadingAnimation()
 //                }
-                ScaffoldExample()
+                LargeTopAppBarExample()
             }
         }
     }
