@@ -17,3 +17,7 @@ val uncheckedThumbColor = Color(0xFF8c8c8c)
 val checkedThumbColor = Color(0xFFFFFFFF)
 val uncheckedTrackColor = Color(0xFFcdcdcd)
 val checkedTrackColor = Color(0xFF03FF72)
+//
+//val colorPrimary= Color(0xFFbc214b)
+//val colorPrimaryDark= Color(0xFF9e1c40)
+//val colorAccent= Color(0xFFD81B60)

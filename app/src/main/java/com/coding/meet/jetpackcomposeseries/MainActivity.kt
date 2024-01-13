@@ -10,9 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import com.coding.meet.jetpackcomposeseries.components.*
+import com.coding.meet.jetpackcomposeseries.components.BasicSnackBarScreen
 import com.coding.meet.jetpackcomposeseries.ui.theme.JetpackComposeSeriesTheme
 
 
