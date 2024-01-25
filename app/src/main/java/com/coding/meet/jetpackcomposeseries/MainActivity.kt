@@ -3,11 +3,14 @@ package com.coding.meet.jetpackcomposeseries
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import com.coding.meet.jetpackcomposeseries.components.BasicSnackBarScreen
+import com.coding.meet.jetpackcomposeseries.components.*
 import com.coding.meet.jetpackcomposeseries.ui.theme.JetpackComposeSeriesTheme
 
 
@@ -87,7 +90,44 @@ class MainActivity : ComponentActivity() {
 //                    StarAnimation()
 //                    LoadingAnimation()
 //                }
-                BasicSnackBarScreen()
+
+                var isShowAlertDialog by remember {
+                    mutableStateOf(false)
+                }
+                var isShowCustomDialog by remember {
+                    mutableStateOf(false)
+                }
+                Column {
+                    Button(onClick = {
+                        isShowAlertDialog = true
+                    }) {
+                        Text(text = "Alert Dialog Show")
+                    }
+                    Button(onClick = {
+                        isShowCustomDialog = true
+                    }) {
+                        Text(text = "Custom Dialog Show")
+                    }
+                }
+                if (isShowAlertDialog) {
+                    AlertDialogScreen(
+                        onDismissRequest = {
+                            isShowAlertDialog = false
+                        },
+                        onConfirmationRequest = {
+                            isShowAlertDialog = false
+                        }
+                    )
+                } else if (isShowCustomDialog){
+                    CustomDialogScreen(
+                        onDismissRequest = {
+                            isShowCustomDialog = false
+                        },
+                        onConfirmationRequest = {
+                            isShowCustomDialog = false
+                        }
+                    )
+                }
             }
         }
     }
