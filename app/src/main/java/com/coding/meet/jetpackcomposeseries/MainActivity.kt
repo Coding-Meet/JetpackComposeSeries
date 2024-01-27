@@ -91,43 +91,45 @@ class MainActivity : ComponentActivity() {
 //                    LoadingAnimation()
 //                }
 
-                var isShowAlertDialog by remember {
-                    mutableStateOf(false)
-                }
-                var isShowCustomDialog by remember {
-                    mutableStateOf(false)
-                }
-                Column {
-                    Button(onClick = {
-                        isShowAlertDialog = true
-                    }) {
-                        Text(text = "Alert Dialog Show")
-                    }
-                    Button(onClick = {
-                        isShowCustomDialog = true
-                    }) {
-                        Text(text = "Custom Dialog Show")
-                    }
-                }
-                if (isShowAlertDialog) {
-                    AlertDialogScreen(
-                        onDismissRequest = {
-                            isShowAlertDialog = false
-                        },
-                        onConfirmationRequest = {
-                            isShowAlertDialog = false
-                        }
-                    )
-                } else if (isShowCustomDialog){
-                    CustomDialogScreen(
-                        onDismissRequest = {
-                            isShowCustomDialog = false
-                        },
-                        onConfirmationRequest = {
-                            isShowCustomDialog = false
-                        }
-                    )
-                }
+//                var isShowAlertDialog by remember {
+//                    mutableStateOf(false)
+//                }
+//                var isShowCustomDialog by remember {
+//                    mutableStateOf(false)
+//                }
+//                Column {
+//                    Button(onClick = {
+//                        isShowAlertDialog = true
+//                    }) {
+//                        Text(text = "Alert Dialog Show")
+//                    }
+//                    Button(onClick = {
+//                        isShowCustomDialog = true
+//                    }) {
+//                        Text(text = "Custom Dialog Show")
+//                    }
+//                }
+//                if (isShowAlertDialog) {
+//                    AlertDialogScreen(
+//                        onDismissRequest = {
+//                            isShowAlertDialog = false
+//                        },
+//                        onConfirmationRequest = {
+//                            isShowAlertDialog = false
+//                        }
+//                    )
+//                } else if (isShowCustomDialog){
+//                    CustomDialogScreen(
+//                        onDismissRequest = {
+//                            isShowCustomDialog = false
+//                        },
+//                        onConfirmationRequest = {
+//                            isShowCustomDialog = false
+//                        }
+//                    )
+//                }
+
+                SharedPreferencesScreen()
             }
         }
     }
