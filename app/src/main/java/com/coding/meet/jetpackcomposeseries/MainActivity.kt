@@ -129,7 +129,7 @@ class MainActivity : ComponentActivity() {
 //                    )
 //                }
 
-                SharedPreferencesScreen()
+                EncryptedSharedPreferencesScreen()
             }
         }
     }

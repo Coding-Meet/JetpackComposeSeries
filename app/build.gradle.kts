@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.coding.meet.jetpackcomposeseries"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -70,4 +70,6 @@ dependencies {
     // ViewModel utilities for Compose
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
     implementation("androidx.navigation:navigation-compose:2.7.6")
+
+    implementation("androidx.security:security-crypto:1.0.0")
 }
